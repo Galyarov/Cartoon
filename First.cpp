@@ -26,28 +26,85 @@ int main ()
     Snowman ( 400, 500,  10,  3, 2  );
     Kolobok ( 200, 400,   5, 10, 1.5);
     */
+
+//-------------------Персонаж Boy
     /*
-    Boy     ( 1000, 100,   1.5,  8);
-    Boy     (  200, 500,   2,    5);
-    Boy     (  400, 300,   0.5,  1);
+    int x = 500;
+    int y = 500;
+    double size = 1;
+    for(double z = 0; z<=10; z++)
+        {
+        Boy(x, y, size, 5);
+        x = x + 25*z;
+        size = size + 1,5*z;
+
+        txSleep(100);
+
+        txSetFillColor (TX_WHITE);
+        txClear();
+
+        }
+        */
+
+//-------------------Персонаж Snowman
+    /*
+    int nac = 0;
+    double size = 1;
+    for(double z = 0; z<=10; z++)
+        {
+        Snowman(400, 500, nac, 3, size);
+        nac = nac + z;
+        //size = size + 1,5*z;
+
+        txSleep(100);
+
+        txSetFillColor (TX_WHITE);
+        txClear();
+
+        }
+      */
+
+//-------------------Персонаж Bird
+    /*
+    int ras = 0;
+    double size = 1;
+    int x = 1000;
+    int y = 500;
+    for(double z = 0; z<=10; z++)
+        {
+        Bird(x, y, ras, size);
+        //ras = ras + z;
+        //size = size + 1.5*z;
+        //x = x + 10*z;
+        //y = y + 10*z;
+        txSleep(100);
+
+        txSetFillColor (TX_WHITE);
+        txClear();
+
+        }
     */
 
-    Bird    (1000,  100,  10,  1.5);
-    Bird    ( 900,  400, -10,  3);
-    Bird    ( 400,  800,  25,  0.5);
+//-------------------Персонаж Kolobok
+    int rad = 10;
+    double size = 1.5;
+    int x = 1000;
+    int y = 500;
+    int rot = 5;
+    for(double z = 0; z<=10; z++)
+        {
+        Bird(1000, 500, rot, rad, 1.5);
+        rot = rot + z;
+        rad = rad + z;
+        //size = size + 1,5*z;
+        //x = x + 10*z;
+        //y = y + 10*z;
+        txSleep(100);
 
-    /*
-    Snowman ( 800, 300,  10,   6, 3);
-    Snowman ( 100, 500,  10,   1, 1);
-    Snowman ( 200, 100,  10,  10, 0.5);
-    */
-    /*
-    Kolobok (  100, 200,  1,  5, 3);
-    Kolobok (  300, 400,  5, 10, 1.5);
-    Kolobok ( 1000, 800, 15, 20, 0.5);
-    */
+        txSetFillColor (TX_WHITE);
+        txClear();
 
-
+        }
     return 0;
     }
 
@@ -125,8 +182,8 @@ void Bird (int x, int y, int ras, double size)
 
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_YELLOW);
-    POINT kluv [6] {{x - 10*size, y - 50*size}, {x -  5*size, y - 75*size - ras},
-                    {x          , y - 55*size}, {x +  5*size, y - 75*size - ras},
+    POINT kluv [6] {{x - 10*size, y - 50*size}, {x -  5*size - ras, y - 75*size},
+                    {x          , y - 55*size}, {x +  5*size + ras, y - 75*size},
                     {x + 10*size, y - 50*size}, {x - 10*size, y - 50*size      }};
     txPolygon      (kluv, 6);
     }
