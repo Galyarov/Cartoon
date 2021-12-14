@@ -9,10 +9,15 @@ ras = how big Beak
 stick = width stick Snowman
 */
 
-void Bird    (long xb, long yb, int    ras,   double sizeb              );
-void Boy     (long x,  long y,  double size,  double tol,   int mah     );
-void Snowman (long xs, long ys, int    nac,   double stick, double sizes);
-void Kolobok (long xk, long yk, int    rot,   int    rad,   double sizek);
+void Bird    (long xb, long yb, int    ras,  double sizeb                      );
+void Boy     (long x,  long y,  double size, double tol,   int mah     , int go);
+void Snowman (long xs, long ys, int    nac,  double stick, double sizes        );
+void Kolobok (long xk, long yk, int    rot,  int    rad,   double sizek        );
+
+void BoyMove ();
+void SnowmanMove();
+void BirdMove();
+void KolobokMove();
 
 int main ()
     {
@@ -28,173 +33,15 @@ int main ()
     Kolobok ( 200, 400,   5, 10, 1.5);
     */
 
-//-------------------Actor Boy
-
-    int x = 500;
-    int y = 500;
-    double size = 1;
-    int mah = 0;
-    for(int z = 0; z<=20; z++)
-        {
-         Boy(x, y, size, 5, mah);
-         if (z <= 7)
-          {
-           for(int a = 0; a<=5; a++)//Raises hands
-            {
-             Boy(x, y, size, 5, mah);
-             mah = mah - a;
-             txSleep(100);
-             txSetFillColor (TX_WHITE);
-             txClear();
-            }
-          }
-         if (z >= 8)
-          {
-           for(int a1 = 0; a1<=5; a1++)//lowers his hands
-            {
-             Boy(x, y, size, 5, mah);
-             mah = mah + 1;
-             txSleep(100);
-             txSetFillColor (TX_WHITE);
-             txClear();
-             if (z == 20)
-              {
-               for(int a2 = 0; a2<=15; a2++)//Is leaving
-                {
-                 Boy(x, y, size, 5, mah);
-                 x = x + 2*a2;
-                 //size = size + 1,5*a2;
-                 txSleep(100);
-                 txSetFillColor (TX_WHITE);
-                 txClear();
-                }
-              }
-            }
-          }
-        }
+    //BoyMove();
+    SnowmanMove();
 
 
-//-------------------Actor Snowman
-
-    int nac = 0;
-    double sizes = 1;
-    for(int zs = 0; zs<=10; zs++)
-        {
-         Snowman(800, 500, nac, 3, sizes);
-         if (zs <= 5)
-          {
-           Snowman(800, 500, nac, 3, sizes);
-           for(int f = 0; f<=5; f++)
-            {
-             nac = nac + f;
-            }
-          }
-         else
-          {
-           nac = nac - zs;
-          }
-         txSleep(100);
-         txSetFillColor (TX_WHITE);
-         txClear();
-         //sizes = sizes + 1,5*zs;
-        }
-
-
-//-------------------Actor Bird
-
-    int ras = 0;
-    double sizeb = 1;
-    int xb = 1000;
-    int yb = 500;
-    for(double zb = 0; zb<=10; zb++)
-        {
-         Bird(xb, yb, ras, sizeb);
-          if (zb <= 5)
-          {
-           for(double zb1 = 0; zb1 <=2; zb1++)
-            {
-             Bird(xb, yb, ras, sizeb);
-             ras = ras + zb;
-             txSleep(100);
-             txSetFillColor (TX_WHITE);
-             txClear();
-            }
-           }
-          ras = ras - zb;
-          //sizeb = sizeb + 1.5*zb;
-          //xb = xb + 10*zb;
-          yb = yb - 2*zb;
-          txSleep(100);
-          txSetFillColor (TX_WHITE);
-          txClear();
-         }
-
-//-------------------Actor Kolobok
-    /*
-    int rad = 10;
-    double sizek = 1.5;
-    int xk = 1000;
-    int yk = 500;
-    int rot = 5;
-    for(double zk = 0; zk<=10; zk++)
-        {
-         Kolobok(1000, 500, rot, rad, 1.5);
-         if (zk <= 5)
-          {
-           for(int zk1 = 0; zk1 <= 3; zk1++)
-            {
-             Kolobok(1000, 500, rot, rad, 1.5);
-             rot = rot + zk1;
-             rad = rad + zk1;
-
-             txSleep(100);
-
-             txSetFillColor (TX_WHITE);
-             txClear();
-            }
-         }
-         if (zk >= 5)
-          {
-           for(int zk2 = 0; zk2 <= 3; zk2++)
-            {
-             Kolobok(1000, 500, rot, rad, 1.5);
-             rot = rot - zk2;
-             rad = rad - zk2;
-             if (zk >= 9)
-              {
-               for(int zk3 = 0; zk3 <= 10; zk3++)
-                {
-                 Kolobok(1000, 500, rot, rad, 1.5);
-                 xk = xk + 10*zk3;
-                 txSleep(100);
-
-                 txSetFillColor (TX_WHITE);
-                 txClear();
-                }
-              }
-
-             txSleep(100);
-
-             txSetFillColor (TX_WHITE);
-             txClear();
-            }
-          }
-
-         }
-         //size = sizek + 1,5*zk;
-         //xk = xk + 10*zk;
-         //yk = yk+ 10*zk;
-
-         txSleep(100);
-
-         txSetFillColor (TX_WHITE);
-         txClear();
-    */
 
     return 0;
     }
 
-void Boy (long x, long y, double size, double tol, int mah)
+void Boy (long x, long y, double size, double tol, int mah, int go)
     {
     txSetColor      (TX_BLACK);
     txSetFillColor  (TX_BLACK);
@@ -213,10 +60,10 @@ void Boy (long x, long y, double size, double tol, int mah)
     txLine     (x + 100*size, y, x + 100*size - mah*size, y + 200*size + mah*size );
 
     txSetColor (TX_BLACK, tol);
-    txLine     (x, y + 190*size, x - 50*size, y +  290*size);
+    txLine     (x, y + 190*size, x - 50*size + go*size, y + 290*size);
 
     txSetColor (TX_BLACK, tol);
-    txLine     (x, y + 190*size, x + 50*size, y + 290*size);
+    txLine     (x, y + 190*size, x + 50*size - go*size, y + 290*size);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_GRAY);
@@ -274,6 +121,7 @@ void Bird (long xb, long yb, int ras, double sizeb)
     }
 
 //----------------------------------------------------------
+
 void Snowman(long xs, long ys, int nac,  double stick, double sizes)
     {
     txSetColor     (TX_BLACK);
@@ -320,7 +168,8 @@ void Snowman(long xs, long ys, int nac,  double stick, double sizes)
     txPolygon        (bucket, 6);
     }
 
-//#---------------------------------------------
+//---------------------------------------------
+
 void Kolobok (long xk, long yk, int    rot,  int    rad,   double sizek)
     {
     txSetColor     (TX_BLACK);
@@ -372,3 +221,170 @@ void Kolobok (long xk, long yk, int    rot,  int    rad,   double sizek)
     }
 
 //#====================================================
+
+//-------------------Actor Boy
+void BoyMove()
+    {
+    int x = 500;
+    int y = 500;
+    double size = 1;
+    int mah = 0;
+    int go = 0;
+
+    for(int z = 0; z<=20; z++)
+        {
+        Boy(x, y, size, 5, mah, go);
+
+        if (z <= 7)
+            {
+            //Raises hands
+            for(int a = 0; a<=5; a++)
+                {
+                Boy(x, y, size, 5, mah, go);
+                mah = mah - a;
+                txSleep(100);
+                txSetFillColor (TX_WHITE);
+                txClear();
+                }
+            }
+
+        if (z >= 8)
+            {
+            for(int a1 = 0; a1<=5; a1++)//lowers his hands
+                {
+                Boy(x, y, size, 5, mah, go);
+
+                mah = mah + 1;
+
+                txSleep(100);
+                txSetFillColor (TX_WHITE);
+                txClear();
+
+                if (z == 20)
+                    {
+                    for(int a2 = 0; a2<=15; a2++)//Is leaving
+                        {
+                        Boy(x, y, size, 5, mah, go);
+
+                        x = x + 2*a2;
+                        go = go + 25 - 50*(a2 % 2);
+
+                        //size = size + 1,5*a2;
+                        txSleep(100);
+                        txSetFillColor (TX_WHITE);
+                        txClear();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+//-------------------Actor Snowman
+void SnowmanMove()
+    {
+    int nac = 0;
+    double sizes = 1;
+
+    for (int countmove = 0; countmove <= 10; countmove++)
+        {
+        Snowman (800, 500, nac, 3, sizes);
+
+        if (countmove <= 5)
+            {
+            Snowman (800, 500, nac, 3, sizes);
+            nac = nac + 10;
+            }
+        else
+            {
+            nac = nac - countmove;
+            }
+
+        txSleep (100);
+        txSetFillColor (TX_WHITE);
+        txClear ();
+        //sizes = sizes + 1,5*countmove;
+        }
+
+    }
+
+//-------------------Actor Bird
+void BirdMove()
+    {
+    int ras = 0;
+    double sizeb = 1;
+    int xb = 1000;
+    int yb = 500;
+
+    for(int zb = 0; zb<=10; zb++)
+        {
+        Bird(xb, yb, ras, sizeb);
+
+        if (zb <= 5)
+            {
+            for(int zb1 = 0; zb1 <=2; zb1++)
+                {
+                Bird(xb, yb, ras, sizeb);
+                ras = ras + zb;
+
+                txSleep(100);
+                txSetFillColor (TX_WHITE);
+                txClear();
+                }
+            }
+        ras = ras - zb;
+        //sizeb = sizeb + 1.5*zb;
+        //xb = xb + 10*zb;
+        yb = yb - 2*zb;
+
+        txSleep(100);
+        txSetFillColor (TX_WHITE);
+        txClear();
+        }
+    }
+
+//-------------------Actor Kolobok
+void KolobokMove()
+    {
+    int rad = 10;
+    double sizek = 1.5;
+    int xk = 1000;
+    int yk = 500;
+    int rot = 5;
+
+    for(double zk = 0; zk<=10; zk++)
+        {
+        Kolobok(xk, yk, rot, rad, sizek);
+
+        if (zk <= 5)
+            {
+            for(int zk1 = 0; zk1 <= 1; zk1++)
+                {
+                Kolobok(xk, yk, rot, rad, sizek);
+
+                rot = rot + zk1;
+                rad = rad + zk1;
+
+                txSleep(100);
+
+                txSetFillColor (TX_WHITE);
+                txClear();
+                }
+            }
+        if (zk >= 9)
+            {
+            for(double zk3 = 0; zk3 <= 10; zk3++)
+                {
+                Kolobok(xk, yk, rot, rad, sizek);
+                xk = xk + 5*zk3;
+                sizek = sizek + 1,5*zk3;
+
+                txSleep(100);
+
+                txSetFillColor (TX_WHITE);
+                txClear();
+                }
+            }
+        }
+
+    }
