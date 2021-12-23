@@ -9,16 +9,19 @@ ras = how big Beak
 stick = width stick Snowman
 */
 
-void Bird     (long xb,  long yb,  int    ras,  double sizeb                      );
-void Boy      (long x,   long y,   double size, double tol,   int mah     , int go);
-void Snowman  (long xs,  long ys,  int    nac,  double stick, double sizes        );
-void Kolobok  (long xk,  long yk,  int    rot,  int    rad,   double sizek        );
-void KolobokS (long xkS, long ykS, int radS,    double sizekS);
+void Bird     (long xBird, long yBird, int ras, double sizeBird);
+void Boy      (long x, long y, double size, double tol, int mah, int go);
+void Snowman  (long xSnowman, long ySnowman, int nac, double stick, double sizeSnowman);
+void Kolobok  (long xKolobok, long yKolobok, int rot, int rad, double sizeKolobok);
+void KolobokS (long xKolobokStandart, long yKolobokStandart, int radStandart, double sizeKolobokStandart);
+void Zanoza   (long xZanoza,  long yZanoza, double sizeZanoza);
 
 void BoyMove ();
 void SnowmanMove();
 void BirdMove();
 void KolobokMove();
+
+void Scene_1();
 
 int main ()
     {
@@ -26,6 +29,10 @@ int main ()
     txSetFillColor (TX_WHITE);
     txRectangle    (0, 0, 1600, 900);
 
+    Scene_1();
+
+    return 0;
+    }
     /*
     First and working coordination
     Boy     ( 800, 300,   1,  5);
@@ -34,47 +41,82 @@ int main ()
     Kolobok ( 200, 400,   5, 10, 1.5);
     */
 
-    long xkS = 1600;
-    long ykS = 600;
-    int radS = 10;
-    double sizekS = 1.5;
-    long xz = 900;
-    long yz = 600;
+void Scene_1()
+{
+//=====================Scene_1===============================
 
-    for(double zk = 0; zk<=5; zk++)
+//--------Coordination
+
+    long xKolobokStandart = 1600;
+    long yKolobokStandart = 600;
+    int radStandart = 10;
+    double sizeKolobokStandart = 1.5;
+
+    long xZanoza = 900;
+    long yZanoza = 700;
+    double sizeZanoza = 1;
+
+    long xKolobok = 900;
+    long yKolobok = 600;
+    int rad = 15;
+    double sizeKolobok = 1.5;
+    int rot = 2;
+
+//--------Title
+
+    txSetFillColor (RGB(255, 255, 255));
+
+    txSetColor(RGB(0, 0, 0));
+    txSelectFont("Comic Sans MS", 60);
+    txTextOut(500, 350, "Gingerbread man. Other story");
+
+    txSleep(2000);
+
+    txSetFillColor (RGB(255, 255, 255));
+    txClear ();
+
+//--------Action 1
+
+    for(int zk = 0; zk<=17; zk++)
         {
-        Zanoza(long xz, long yz)
-        KolobokS(xkS, ykS, radS, sizekS);
-        xkS = xkS - 5*zk;
+        Zanoza (xZanoza, yZanoza, sizeZanoza);
+        KolobokS(xKolobokStandart, yKolobokStandart, radStandart, sizeKolobokStandart);
+        xKolobokStandart = xKolobokStandart - 5*zk;
+
         txSleep(100);
 
-        txSetFillColor (TX_WHITE);
-        txClear();
+        txSetFillColor (RGB(119, 221, 119));
+        txClear ();
         }
 
+//--------Phrase
 
+    txSetFillColor (RGB(255, 255, 255));
 
-     for(double zk1 = 0; zk1 <= 2; zk1++)
+    txSetColor(RGB(0, 0, 0));
+    txSelectFont("Comic Sans MS", 50);
+    txTextOut(100, 300, "Oh, how can that be. I will not be able to remove the splinter, there are no pens!");
+
+    txSleep(2000);
+
+    txSetFillColor (RGB(255, 255, 255));
+    txClear();
+
+//--------Action 2
+
+     for(int zk1 = 0; zk1 <= 20; zk1++)
          {
-          txTextOut(400, 400, "ќх, как же так. я не смогу убрать занозу, ручек то нет!");
+          Kolobok (xKolobok, yKolobok, rot, rad, sizeKolobok);
+          xKolobok = xKolobok - 5*zk1;
+
           txSleep(100);
 
-          txSetFillColor (TX_WHITE);
+          txSetFillColor (RGB(119, 221, 119));
           txClear();
          }
+}
 
 
-     for(double zk1 = 0; zk1 <= 2; zk1++)
-         {
-          Kolobok (xk, yk, rot, rad, sizek)
-          xk = xk + 5*zk1
-          txSleep(100);
-
-          txSetFillColor (TX_WHITE);
-          txClear();
-         }
-    return 0;
-    }
 
 void Boy (long x, long y, double size, double tol, int mah, int go)
     {
@@ -119,180 +161,185 @@ void Boy (long x, long y, double size, double tol, int mah, int go)
 
 //-----------------------------------------------------------------------------
 
-void Bird (long xb, long yb, int ras, double sizeb)
+void Bird (long xBird, long yBird, int ras, double sizeBird)
     {
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_BROWN);
-    POINT body [4] {{ROUND(xb), ROUND(yb)            }, {ROUND(xb + 100*sizeb), ROUND(yb - 50*sizeb)},
-                    {ROUND(xb), ROUND(yb + 100*sizeb)}, {ROUND(xb)            , ROUND(yb)           }};
+    POINT body [4] {{ROUND(xBird), ROUND(yBird)            }, {ROUND(xBird + 100*sizeBird), ROUND(yBird - 50*sizeBird)},
+                    {ROUND(xBird), ROUND(yBird + 100*sizeBird)}, {ROUND(xBird)            , ROUND(yBird)           }};
     txPolygon      (body, 4);
 
     txSetColor      (TX_BLACK);
     txSetFillColor  (TX_BROWN);
-    POINT krilo1 [4] {{ROUND(xb), ROUND(yb)            }, {ROUND(xb - 100*sizeb),  ROUND(yb -  50*sizeb)},
-                      {ROUND(xb), ROUND(yb + 100*sizeb)}, {ROUND(xb)            ,  ROUND(yb)            }};
+    POINT krilo1 [4] {{ROUND(xBird), ROUND(yBird)            }, {ROUND(xBird - 100*sizeBird),  ROUND(yBird -  50*sizeBird)},
+                      {ROUND(xBird), ROUND(yBird + 100*sizeBird)}, {ROUND(xBird)            ,  ROUND(yBird)            }};
     txPolygon        (krilo1, 4);
 
     txSetColor       (TX_BLACK);
     txSetFillColor   (RGB(82, 92, 65));
-    POINT krilo2 [4] {{ROUND(xb - 20*sizeb), ROUND(yb)            }, {ROUND(xb + 20*sizeb), ROUND(yb)            },
-                      {ROUND(xb - 40*sizeb), ROUND(yb + 100*sizeb)}, {ROUND(xb + 40*sizeb), ROUND(yb + 100*sizeb)}};
+    POINT krilo2 [4] {{ROUND(xBird - 20*sizeBird), ROUND(yBird)            }, {ROUND(xBird + 20*sizeBird), ROUND(yBird)            },
+                      {ROUND(xBird - 40*sizeBird), ROUND(yBird + 100*sizeBird)}, {ROUND(xBird + 40*sizeBird), ROUND(yBird + 100*sizeBird)}};
     txPolygon        (krilo2, 4);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (RGB(82, 92, 65));
-    txCircle       (xb, yb - 25*sizeb, 25*sizeb);
+    txCircle       (xBird, yBird - 25*sizeBird, 25*sizeBird);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_BLACK);
-    txCircle       (xb + 15*sizeb, yb - 25*sizeb, 5*sizeb);
+    txCircle       (xBird + 15*sizeBird, yBird - 25*sizeBird, 5*sizeBird);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_YELLOW);
-    POINT kluv [6] {{ROUND(xb - 10*sizeb), ROUND(yb - 50*sizeb)}, {ROUND(xb -  5*sizeb - ras), ROUND(yb - 75*sizeb)},
-                    {ROUND(xb)           , ROUND(yb - 55*sizeb)}, {ROUND(xb +  5*sizeb + ras), ROUND(yb - 75*sizeb)},
-                    {ROUND(xb + 10*sizeb), ROUND(yb - 50*sizeb)}, {ROUND(xb - 10*sizeb),       ROUND(yb - 50*sizeb)}};
+    POINT kluv [6] {{ROUND(xBird - 10*sizeBird), ROUND(yBird - 50*sizeBird)}, {ROUND(xBird -  5*sizeBird - ras), ROUND(yBird - 75*sizeBird)},
+                    {ROUND(xBird)           , ROUND(yBird - 55*sizeBird)}, {ROUND(xBird +  5*sizeBird + ras), ROUND(yBird - 75*sizeBird)},
+                    {ROUND(xBird + 10*sizeBird), ROUND(yBird - 50*sizeBird)}, {ROUND(xBird - 10*sizeBird),       ROUND(yBird - 50*sizeBird)}};
     txPolygon      (kluv, 6);
     }
 
 //----------------------------------------------------------
 
-void Snowman(long xs, long ys, int nac,  double stick, double sizes)
+void Snowman (long xSnowman, long ySnowman, int nac,  double stick, double sizeSnowman)
     {
     txSetColor     (TX_BLACK);
     txSetFillColor (RGB(200, 226, 227));
-    txCircle       (xs , ys + 100*sizes, 100*sizes);
+    txCircle       (xSnowman , ySnowman + 100*sizeSnowman, 100*sizeSnowman);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (RGB(200, 226, 227));
-    txCircle       (xs, ys - 50*sizes, 50*sizes);
+    txCircle       (xSnowman, ySnowman - 50*sizeSnowman, 50*sizeSnowman);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (RGB(200, 226, 227));
-    txCircle       (xs + 75*sizes, ys + 25*sizes, 25*sizes);
+    txCircle       (xSnowman + 75*sizeSnowman, ySnowman + 25*sizeSnowman, 25*sizeSnowman);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (RGB(200, 226, 227));
-    txCircle       (xs - 75*sizes, ys + 25*sizes, 25*sizes);
+    txCircle       (xSnowman - 75*sizeSnowman, ySnowman + 25*sizeSnowman, 25*sizeSnowman);
 
     txSetColor       (TX_BLACK);
     txSetFillColor   (TX_ORANGE);
-    POINT carrot [4] {{ROUND(xs), ROUND(ys - 60*sizes)}, {ROUND(xs + 30*sizes), ROUND(ys - 50*sizes)},
-                      {ROUND(xs), ROUND(ys - 40*sizes)}, {ROUND(xs)           , ROUND(ys - 60*sizes)}};
+    POINT carrot [4] {{ROUND(xSnowman), ROUND(ySnowman - 60*sizeSnowman)}, {ROUND(xSnowman + 30*sizeSnowman), ROUND(ySnowman - 50*sizeSnowman)},
+                      {ROUND(xSnowman), ROUND(ySnowman - 40*sizeSnowman)}, {ROUND(xSnowman)           , ROUND(ySnowman - 60*sizeSnowman)}};
     txPolygon        (carrot, 4);
 
     txSetColor   (TX_BROWN, stick);
-    txLine       (xs + 75*sizes + nac, ys - 100*sizes,
-                  xs + 75*sizes - nac, ys + 200*sizes);
+    txLine       (xSnowman + 75*sizeSnowman + nac, ySnowman - 100*sizeSnowman,
+                  xSnowman + 75*sizeSnowman - nac, ySnowman + 200*sizeSnowman);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (RGB(78, 102, 175));
-    txCircle       (xs + 75*sizes + nac, ys - 98*sizes, 5*sizes);
+    txCircle       (xSnowman + 75*sizeSnowman + nac, ySnowman - 98*sizeSnowman, 5*sizeSnowman);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (RGB(78, 102, 190));
-    txCircle       (xs + 74*sizes + nac, ys - 99*sizes, 5*sizes);
-    txCircle       (xs + 75*sizes + nac, ys - 98*sizes, 5*sizes);
-    txCircle       (xs + 76*sizes + nac, ys - 99*sizes, 5*sizes);
+    txCircle       (xSnowman + 74*sizeSnowman + nac, ySnowman - 99*sizeSnowman, 5*sizeSnowman);
+    txCircle       (xSnowman + 75*sizeSnowman + nac, ySnowman - 98*sizeSnowman, 5*sizeSnowman);
+    txCircle       (xSnowman + 76*sizeSnowman + nac, ySnowman - 99*sizeSnowman, 5*sizeSnowman);
 
     txSetColor       (TX_BLACK);
     txSetFillColor   (RGB(106, 106, 130));
-    POINT bucket [6] {{ROUND(xs - 50*sizes), ROUND(ys -  90*sizes)}, {ROUND(xs - 40*sizes), ROUND(ys - 180*sizes)},
-                      {ROUND(xs + 40*sizes), ROUND(ys - 180*sizes)}, {ROUND(xs + 50*sizes), ROUND(ys -  90*sizes)},
-                      {ROUND(xs + 50*sizes), ROUND(ys -  90*sizes)}, {ROUND(xs - 50*sizes), ROUND(ys -  90*sizes)}};
+    POINT bucket [6] {{ROUND(xSnowman - 50*sizeSnowman), ROUND(ySnowman -  90*sizeSnowman)}, {ROUND(xSnowman - 40*sizeSnowman), ROUND(ySnowman - 180*sizeSnowman)},
+                      {ROUND(xSnowman + 40*sizeSnowman), ROUND(ySnowman - 180*sizeSnowman)}, {ROUND(xSnowman + 50*sizeSnowman), ROUND(ySnowman -  90*sizeSnowman)},
+                      {ROUND(xSnowman + 50*sizeSnowman), ROUND(ySnowman -  90*sizeSnowman)}, {ROUND(xSnowman - 50*sizeSnowman), ROUND(ySnowman -  90*sizeSnowman)}};
     txPolygon        (bucket, 6);
     }
 
 //---------------------------------------------
-void KolobokS (long xkS, long ykS, int radS, double sizekS)
+void KolobokS (long xKolobokStandart, long yKolobokStandart, int radStandart, double sizeKolobokStandart)
     {
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_YELLOW);
-    txCircle       (xkS, ykS, 100*sizekS);
+    txCircle       (xKolobokStandart, yKolobokStandart, 100*sizeKolobokStandart);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_BROWN);
-    POINT nos [4]  {{ROUND(xkS)           , ROUND(ykS)           },   {ROUND(xkS - 20*sizekS), ROUND(ykS + 20*sizekS)},
-                    {ROUND(xkS + 20*sizekS), ROUND(ykS + 20*sizekS)}, {ROUND(xkS)           , ROUND(ykS)           }};
+    POINT nos [4]  {{ROUND(xKolobokStandart)           ,  ROUND(yKolobokStandart)           },   {ROUND(xKolobokStandart - 20*sizeKolobokStandart), ROUND(yKolobokStandart + 20*sizeKolobokStandart)},
+                    {ROUND(xKolobokStandart + 20*sizeKolobokStandart), ROUND(yKolobokStandart + 20*sizeKolobokStandart)},  {ROUND(xKolobokStandart)           ,  ROUND(yKolobokStandart)           }};
     txPolygon      (nos, 4);
 
 
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_BLACK);
-    txCircle       (xkS - 25*sizekS, ykS - 25*sizekS, radS*sizekS);
+    txCircle       (xKolobokStandart - 25*sizeKolobokStandart, yKolobokStandart - 25*sizeKolobokStandart, radStandart*sizeKolobokStandart);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_BLACK);
-    txCircle       (xkS + 25*sizekS, ykS - 25*sizekS, radS*sizekS);
+    txCircle       (xKolobokStandart + 25*sizeKolobokStandart, yKolobokStandart - 25*sizeKolobokStandart, radStandart*sizeKolobokStandart);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_BLACK);
-    txArc          (xkS - 60*sizekS, ykS + 70*sizekS,
-                    xkS + 60*sizekS, ykS + 70*sizekS,
-                    15, 10);
+    txEllipse      (xKolobokStandart - 40*sizeKolobokStandart, yKolobokStandart + 60*sizeKolobokStandart,
+                    xKolobokStandart + 50*sizeKolobokStandart, yKolobokStandart + 75*sizeKolobokStandart);
+
+    txSetColor     (TX_YELLOW);
+    txSetFillColor (TX_YELLOW);
+    txEllipse      (xKolobokStandart - 40*sizeKolobokStandart, yKolobokStandart + 55*sizeKolobokStandart,
+                    xKolobokStandart + 50*sizeKolobokStandart, yKolobokStandart + 65*sizeKolobokStandart);
     }
 
 //---------------------------------------------
 
-void Kolobok (long xk, long yk, int rot, int rad, double sizek)
+void Kolobok (long xKolobok, long yKolobok, int rot, int rad, double sizeKolobok)
     {
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_YELLOW);
-    txCircle       (xk, yk, 100*sizek);
+    txCircle       (xKolobok, yKolobok, 100*sizeKolobok);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_BROWN);
-    POINT nos [4]  {{ROUND(xk)           , ROUND(yk)           }, {ROUND(xk - 20*sizek), ROUND(yk + 20*sizek)},
-                    {ROUND(xk + 20*sizek), ROUND(yk + 20*sizek)}, {ROUND(xk)           , ROUND(yk)           }};
+    POINT nos [4]  {{ROUND(xKolobok)           , ROUND(yKolobok)           }, {ROUND(xKolobok - 20*sizeKolobok), ROUND(yKolobok + 20*sizeKolobok)},
+                    {ROUND(xKolobok + 20*sizeKolobok), ROUND(yKolobok + 20*sizeKolobok)}, {ROUND(xKolobok)           , ROUND(yKolobok)           }};
     txPolygon      (nos, 4);
 
 
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_BLACK);
-    txCircle       (xk - 25*sizek, yk - 25*sizek, rad*sizek);
+    txCircle       (xKolobok - 25*sizeKolobok, yKolobok - 25*sizeKolobok, rad*sizeKolobok);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_BLACK);
-    txCircle       (xk + 25*sizek, yk - 25*sizek, rad*sizek);
+    txCircle       (xKolobok + 25*sizeKolobok, yKolobok - 25*sizeKolobok, rad*sizeKolobok);
 
     txSetColor (TX_BLACK, rot);
-    txLine     (xk - 60*sizek, yk + 70*sizek, xk - 50*sizek, yk + 70*sizek);
-    txLine     (xk - 50*sizek, yk + 70*sizek, xk - 40*sizek, yk + 60*sizek);
-    txLine     (xk - 40*sizek, yk + 60*sizek, xk - 30*sizek, yk + 60*sizek);
-    txLine     (xk - 30*sizek, yk + 60*sizek, xk - 20*sizek, yk + 70*sizek);
-    txLine     (xk - 20*sizek, yk + 70*sizek, xk - 10*sizek, yk + 70*sizek);
-    txLine     (xk - 10*sizek, yk + 70*sizek, xk           , yk + 60*sizek);
-    txLine     (xk           , yk + 60*sizek, xk + 10*sizek, yk + 70*sizek);
-    txLine     (xk + 10*sizek, yk + 70*sizek, xk + 20*sizek, yk + 70*sizek);
-    txLine     (xk + 20*sizek, yk + 70*sizek, xk + 30*sizek, yk + 60*sizek);
-    txLine     (xk + 30*sizek, yk + 60*sizek, xk + 40*sizek, yk + 60*sizek);
-    txLine     (xk + 40*sizek, yk + 60*sizek, xk + 50*sizek, yk + 70*sizek);
-    txLine     (xk + 50*sizek, yk + 70*sizek, xk + 60*sizek, yk + 70*sizek);
+    txLine     (xKolobok - 60*sizeKolobok, yKolobok + 70*sizeKolobok, xKolobok - 50*sizeKolobok, yKolobok + 70*sizeKolobok);
+    txLine     (xKolobok - 50*sizeKolobok, yKolobok + 70*sizeKolobok, xKolobok - 40*sizeKolobok, yKolobok + 60*sizeKolobok);
+    txLine     (xKolobok - 40*sizeKolobok, yKolobok + 60*sizeKolobok, xKolobok - 30*sizeKolobok, yKolobok + 60*sizeKolobok);
+    txLine     (xKolobok - 30*sizeKolobok, yKolobok + 60*sizeKolobok, xKolobok - 20*sizeKolobok, yKolobok + 70*sizeKolobok);
+    txLine     (xKolobok - 20*sizeKolobok, yKolobok + 70*sizeKolobok, xKolobok - 10*sizeKolobok, yKolobok + 70*sizeKolobok);
+    txLine     (xKolobok - 10*sizeKolobok, yKolobok + 70*sizeKolobok, xKolobok                 , yKolobok + 60*sizeKolobok);
+    txLine     (xKolobok                 , yKolobok + 60*sizeKolobok, xKolobok + 10*sizeKolobok, yKolobok + 70*sizeKolobok);
+    txLine     (xKolobok + 10*sizeKolobok, yKolobok + 70*sizeKolobok, xKolobok + 20*sizeKolobok, yKolobok + 70*sizeKolobok);
+    txLine     (xKolobok + 20*sizeKolobok, yKolobok + 70*sizeKolobok, xKolobok + 30*sizeKolobok, yKolobok + 60*sizeKolobok);
+    txLine     (xKolobok + 30*sizeKolobok, yKolobok + 60*sizeKolobok, xKolobok + 40*sizeKolobok, yKolobok + 60*sizeKolobok);
+    txLine     (xKolobok + 40*sizeKolobok, yKolobok + 60*sizeKolobok, xKolobok + 50*sizeKolobok, yKolobok + 70*sizeKolobok);
+    txLine     (xKolobok + 50*sizeKolobok, yKolobok + 70*sizeKolobok, xKolobok + 60*sizeKolobok, yKolobok + 70*sizeKolobok);
 
     txSetColor       (TX_BLACK);
     txSetFillColor   (TX_BROWN);
-    POINT sanosa [5] {{ROUND(xk - 100*sizek), ROUND(yk)           }, {ROUND(xk - 110*sizek), ROUND(yk - 30*sizek)},
-                      {ROUND(xk - 110*sizek), ROUND(yk - 30*sizek)}, {ROUND(xk - 115*sizek), ROUND(yk - 20*sizek)},
-                      {ROUND(xk - 115*sizek), ROUND(yk - 20*sizek)}};
+    POINT sanosa [5] {{ROUND(xKolobok - 100*sizeKolobok), ROUND(yKolobok)           }, {ROUND(xKolobok - 110*sizeKolobok), ROUND(yKolobok - 30*sizeKolobok)},
+                      {ROUND(xKolobok - 110*sizeKolobok), ROUND(yKolobok - 30*sizeKolobok)}, {ROUND(xKolobok - 115*sizeKolobok), ROUND(yKolobok - 20*sizeKolobok)},
+                      {ROUND(xKolobok - 115*sizeKolobok), ROUND(yKolobok - 20*sizeKolobok)}};
     txPolygon        (sanosa, 5);
 
     txSetColor     (TX_BLACK);
     txSetFillColor (RGB(61, 166, 201));
-    POINT GG [5]   {{ROUND(xk - 15*sizek), ROUND(yk - 15*sizek)}, {ROUND(xk - 10*sizek), ROUND(yk - 10*sizek)},
-                    {ROUND(xk - 13*sizek), ROUND(yk -  7*sizek)}, {ROUND(xk - 18*sizek), ROUND(yk - 12*sizek)},
-                    {ROUND(xk - 15*sizek), ROUND(yk - 15*sizek)}};
+    POINT GG [5]   {{ROUND(xKolobok - 15*sizeKolobok), ROUND(yKolobok - 15*sizeKolobok)}, {ROUND(xKolobok - 10*sizeKolobok), ROUND(yKolobok - 10*sizeKolobok)},
+                    {ROUND(xKolobok - 13*sizeKolobok), ROUND(yKolobok -  7*sizeKolobok)}, {ROUND(xKolobok - 18*sizeKolobok), ROUND(yKolobok - 12*sizeKolobok)},
+                    {ROUND(xKolobok - 15*sizeKolobok), ROUND(yKolobok - 15*sizeKolobok)}};
     txPolygon      (GG, 5);
     }
-
-void Zanosa (long xz, long yz)
+//--------------------------------------------------------
+void Zanoza (long xZanoza, long yZanoza, double sizeZanoza)
     {
     txSetColor       (TX_BLACK);
     txSetFillColor   (TX_BROWN);
-    POINT sanosa [5] {{ROUND(xk - 100*sizek), ROUND(yk)           }, {ROUND(xk - 110*sizek), ROUND(yk - 30*sizek)},
-                      {ROUND(xk - 110*sizek), ROUND(yk - 30*sizek)}, {ROUND(xk - 115*sizek), ROUND(yk - 20*sizek)},
-                      {ROUND(xk - 115*sizek), ROUND(yk - 20*sizek)}};
+    POINT sanosa [5] {{ROUND(xZanoza - 100*sizeZanoza), ROUND(yZanoza)           }, {ROUND(xZanoza - 110*sizeZanoza), ROUND(yZanoza - 30*sizeZanoza)},
+                      {ROUND(xZanoza - 110*sizeZanoza), ROUND(yZanoza - 30*sizeZanoza)}, {ROUND(xZanoza - 115*sizeZanoza), ROUND(yZanoza - 20*sizeZanoza)},
+                      {ROUND(xZanoza - 115*sizeZanoza), ROUND(yZanoza - 20*sizeZanoza)}};
     txPolygon        (sanosa, 5);
     }
+
 //#====================================================
 
 //-------------------Actor Boy
@@ -357,15 +404,15 @@ void BoyMove()
 void SnowmanMove()
     {
     int nac = 0;
-    double sizes = 1;
+    double sizeSnowman = 1;
 
     for (int countmove = 0; countmove <= 10; countmove++)
         {
-        Snowman (800, 500, nac, 3, sizes);
+        Snowman (800, 500, nac, 3, sizeSnowman);
 
         if (countmove <= 5)
             {
-            Snowman (800, 500, nac, 3, sizes);
+            Snowman (800, 500, nac, 3, sizeSnowman);
             nac = nac + 10;
             }
         else
@@ -376,7 +423,7 @@ void SnowmanMove()
         txSleep (100);
         txSetFillColor (TX_WHITE);
         txClear ();
-        //sizes = sizes + 1,5*countmove;
+        //sizeSnowman = sizeSnowman + 1,5*countmove;
         }
 
     }
@@ -385,19 +432,19 @@ void SnowmanMove()
 void BirdMove()
     {
     int ras = 0;
-    double sizeb = 1;
-    int xb = 1000;
-    int yb = 500;
+    double sizeBird = 1;
+    int xBird = 1000;
+    int yBird = 500;
 
     for(int zb = 0; zb<=10; zb++)
         {
-        Bird(xb, yb, ras, sizeb);
+        Bird(xBird, yBird, ras, sizeBird);
 
         if (zb <= 5)
             {
             for(int zb1 = 0; zb1 <=2; zb1++)
                 {
-                Bird(xb, yb, ras, sizeb);
+                Bird(xBird, yBird, ras, sizeBird);
                 ras = ras + zb;
 
                 txSleep(100);
@@ -406,9 +453,9 @@ void BirdMove()
                 }
             }
         ras = ras - zb;
-        //sizeb = sizeb + 1.5*zb;
-        //xb = xb + 10*zb;
-        yb = yb - 2*zb;
+        //sizeBird = sizeBird + 1.5*zb;
+        //xBird = xBird + 10*zb;
+        yBird = yBird - 2*zb;
 
         txSleep(100);
         txSetFillColor (TX_WHITE);
@@ -420,20 +467,20 @@ void BirdMove()
 void KolobokMove()
     {
     int rad = 10;
-    double sizek = 1.5;
-    int xk = 1000;
-    int yk = 500;
+    double sizeKolobok = 1.5;
+    int xKolobok = 1000;
+    int yKolobok = 500;
     int rot = 5;
 
-    for(double zk = 0; zk<=10; zk++)
+    for(int zk = 0; zk<=10; zk++)
         {
-        Kolobok(xk, yk, rot, rad, sizek);
+        Kolobok(xKolobok, yKolobok, rot, rad, sizeKolobok);
 
         if (zk <= 5)
             {
             for(int zk1 = 0; zk1 <= 1; zk1++)
                 {
-                Kolobok(xk, yk, rot, rad, sizek);
+                Kolobok(xKolobok, yKolobok, rot, rad, sizeKolobok);
 
                 rot = rot + zk1;
                 rad = rad + zk1;
@@ -446,11 +493,11 @@ void KolobokMove()
             }
         if (zk >= 9)
             {
-            for(double zk3 = 0; zk3 <= 10; zk3++)
+            for(int zk3 = 0; zk3 <= 10; zk3++)
                 {
-                Kolobok(xk, yk, rot, rad, sizek);
-                xk = xk + 5*zk3;
-                sizek = sizek + 1,5*zk3;
+                Kolobok(xKolobok, yKolobok, rot, rad, sizeKolobok);
+                xKolobok = xKolobok + 5*zk3;
+                sizeKolobok = sizeKolobok + 1,5*zk3;
 
                 txSleep(100);
 
