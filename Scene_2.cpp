@@ -16,6 +16,9 @@ void Kolobok  (long xKolobok, long yKolobok, int rot, int rad, double sizeKolobo
 void KolobokS (long xKolobokStandart, long yKolobokStandart, int radStandart, double sizeKolobokStandart);
 void Zanoza   (long xZanoza,  long yZanoza, double sizeZanoza);
 
+void Tree1    (long xTree1, long yTree1);
+void Tree2    (long xTree2, long yTree2);
+
 void BoyMove ();
 void SnowmanMove();
 void BirdMove();
@@ -31,6 +34,7 @@ int main ()
     txRectangle    (0, 0, 1600, 900);
 
     Scene_1();
+    Scene_2();
 
     return 0;
     }
@@ -63,6 +67,13 @@ void Scene_1()
     double sizeKolobok = 1.5;
     int rot = 2;
 
+    long xTree1 = 1400;
+    long yTree1 = 300;
+
+    long xTree2 = 150;
+    long yTree2 = 700;
+
+
 //--------Title
 
     txSetFillColor (RGB(255, 255, 255));
@@ -80,8 +91,12 @@ void Scene_1()
 
     for(int zk = 0; zk<=17; zk++)
         {
-        Zanoza (xZanoza, yZanoza, sizeZanoza);
-        KolobokS(xKolobokStandart, yKolobokStandart, radStandart, sizeKolobokStandart);
+        Zanoza   (xZanoza, yZanoza, sizeZanoza);
+        KolobokS (xKolobokStandart, yKolobokStandart, radStandart, sizeKolobokStandart);
+
+        Tree1 (xTree1, yTree1);
+        Tree2 (xTree2, yTree2);
+
         xKolobokStandart = xKolobokStandart - 5*zk;
 
         txSleep(100);
@@ -108,6 +123,10 @@ void Scene_1()
      for(int zk1 = 0; zk1 <= 20; zk1++)
          {
           Kolobok (xKolobok, yKolobok, rot, rad, sizeKolobok);
+
+          Tree1 (xTree1, yTree1);
+          Tree2 (xTree2, yTree2);
+
           xKolobok = xKolobok - 5*zk1;
 
           txSleep(100);
@@ -115,6 +134,7 @@ void Scene_1()
           txSetFillColor (RGB(119, 221, 119));
           txClear();
          }
+
 }
 
 void Scene_2()
@@ -127,18 +147,85 @@ void Scene_2()
     long yKolobok = 600;
     int rad = 10;
     double sizeKolobok = 1.5;
+    int rot = 2;
+
+    long xSnowman = 800;
+    long ySnowman = 500;
+    int nac = 0;
+    double stick = 1;
+    double sizeSnowman = 1.5;
+
+//--------Action 1
 
     for (int i=0; i<=15; i++)
         {
-         Snowman(xSnowman, ySnowman, nac, stick, sizeSnowman);
+         Snowman (xSnowman, ySnowman, nac, stick, sizeSnowman);
          Kolobok (xKolobok, yKolobok, rot, rad, sizeKolobok);
 
-         xKolobok = xKolobok - 5*i;
+         xKolobok = xKolobok - 3*i;
 
          txSleep(100);
 
-         txSetFillColor(TX_WHITE);
+         txSetFillColor(RGB(224, 255, 255));
          txClear();
+        }
+
+//--------Phrase 1
+
+    txSetColor(RGB(0, 0, 0));
+    txSelectFont("Comic Sans MS", 50);
+    txTextOut(500, 300, "-Snowman, be a friend, help, eh!");
+    txTextOut(500, 400, "-Let's try");
+
+    txSleep(3000);
+
+    txSetFillColor (RGB(255, 255, 255));
+    txClear();
+
+//--------Action 2
+
+    for (int countmove = 0; countmove <= 20; countmove++)
+        {
+         Snowman (xSnowman, ySnowman, nac, stick, sizeSnowman);
+         Kolobok (xKolobok, yKolobok, rot, rad, sizeKolobok);
+
+         if (countmove <= 10)
+             {
+              Snowman (xSnowman, ySnowman, nac, stick, sizeSnowman);
+              nac = nac + 10;
+             }
+         else
+             {
+              nac = nac - countmove;
+             }
+
+         txSleep(100);
+
+         txSetFillColor(RGB(224, 255, 255));
+         txClear();
+        }
+
+//--------Phrase 2
+
+    txSetColor(RGB(0, 0, 0));
+    txSelectFont("Comic Sans MS", 50);
+    txTextOut(300, 300, "-I can't get in. I can't move. I'm just a snowman!");
+    txTextOut(300, 400, "-Eh, okay. Thanks anyway for trying");
+
+    txSleep(3000);
+
+    txSetFillColor (RGB(255, 255, 255));
+    txClear();
+
+//--------Action 3
+
+    for (int z = 0; z <= 10; z++)
+        {
+         Snowman (xSnowman, ySnowman, nac, stick, sizeSnowman);
+         Kolobok (xKolobok, yKolobok, rot, rad, sizeKolobok);
+
+         sizeKolobok = sizeKolobok - 0.25*z;
+         xKolobok = xKolobok - 5*z;
         }
 }
 
@@ -365,6 +452,67 @@ void Zanoza (long xZanoza, long yZanoza, double sizeZanoza)
     txPolygon        (sanosa, 5);
     }
 
+void Tree1 (long xTree1, long yTree1)
+    {
+     txSetColor     (TX_BLACK);
+     txSetFillColor (TX_BROWN);
+     txRectangle    (xTree1 - 10, yTree1,
+                     xTree1 - 50, yTree1 + 100);
+
+     txSetColor     (TX_BLACK);
+     txSetFillColor (TX_GREEN);
+     txCircle       (xTree1 - 80, yTree1 - 150, 60);
+
+     txSetColor     (TX_BLACK);
+     txSetFillColor (TX_GREEN);
+     txCircle       (xTree1 + 40, yTree1 - 150, 60);
+
+     txSetColor     (TX_BLACK);
+     txSetFillColor (TX_GREEN);
+     txCircle       (xTree1 - 30, yTree1 - 200, 60);
+
+     txSetColor     (TX_GREEN);
+     txSetFillColor (TX_GREEN);
+     txEllipse      (xTree1 - 100,  yTree1 +  20,
+                     xTree1 +  40,  yTree1 - 200);
+
+     txSetColor     (TX_BLACK);
+     txSetFillColor (RGB(178, 34, 34));
+     txCircle       (xTree1 - 30, yTree1 - 200, 20);
+
+     txSetColor     (TX_BLACK);
+     txSetFillColor (RGB(255, 160, 122));
+     txCircle       (xTree1 + 40, yTree1 - 150, 15);
+
+     txSetColor     (TX_BLACK);
+     txSetFillColor (RGB(139, 0, 0));
+     txCircle       (xTree1 - 80, yTree1 - 150, 22);
+    }
+
+void Tree2 (long xTree2, long yTree2)
+    {
+     txSetColor     (TX_BLACK);
+     txSetFillColor (TX_BROWN);
+     txRectangle    (xTree2 - 10, yTree2,
+                     xTree2 - 50, yTree2 + 100);
+
+     txSetColor     (TX_BLACK);
+     txSetFillColor (RGB(173, 255, 47));
+     txCircle       (xTree2 - 80, yTree2 - 150, 60);
+
+     txSetColor     (TX_BLACK);
+     txSetFillColor (RGB(173, 255, 47));
+     txCircle       (xTree2 + 40, yTree2 - 150, 60);
+
+     txSetColor     (TX_BLACK);
+     txSetFillColor (RGB(173, 255, 47));
+     txCircle       (xTree2 - 30, yTree2 - 200, 60);
+
+     txSetColor     (RGB(173, 255, 47));
+     txSetFillColor (RGB(173, 255, 47));
+     txEllipse      (xTree2 - 100,  yTree2 +  20,
+                     xTree2 +  40,  yTree2 - 200);
+    }
 //#====================================================
 
 //-------------------Actor Boy
