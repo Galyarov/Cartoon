@@ -18,6 +18,7 @@ void Zanoza   (long xZanoza,  long yZanoza, double sizeZanoza);
 
 void Tree1    (long xTree1, long yTree1);
 void Tree2    (long xTree2, long yTree2);
+void Snowdrift(long xSnowdrift, long ySnowdrift, double sizeSnowdrift);
 
 void BoyMove ();
 void SnowmanMove();
@@ -29,14 +30,14 @@ void Scene_2();
 
 int main ()
     {
-    txCreateWindow (1600,900);
-    txSetFillColor (TX_WHITE);
-    txRectangle    (0, 0, 1600, 900);
+     txCreateWindow (1600,900);
+     txSetFillColor (TX_WHITE);
+     txRectangle    (0, 0, 1600, 900);
 
-    Scene_1();
-    Scene_2();
+     Scene_1();
+     Scene_2();
 
-    return 0;
+     return 0;
     }
     /*
     First and working coordination
@@ -96,6 +97,10 @@ void Scene_1()
 
         Tree1 (xTree1, yTree1);
         Tree2 (xTree2, yTree2);
+        Tree1 (162, 200);
+        Tree1 (1300, 250);
+        Tree2 (1500, 650);
+        Tree2 (750, 250);
 
         xKolobokStandart = xKolobokStandart - 5*zk;
 
@@ -126,6 +131,10 @@ void Scene_1()
 
           Tree1 (xTree1, yTree1);
           Tree2 (xTree2, yTree2);
+          Tree1 (162, 200);
+          Tree1 (1300, 250);
+          Tree2 (1500, 650);
+          Tree2 (750, 250);
 
           xKolobok = xKolobok - 5*zk1;
 
@@ -162,6 +171,11 @@ void Scene_2()
          Snowman (xSnowman, ySnowman, nac, stick, sizeSnowman);
          Kolobok (xKolobok, yKolobok, rot, rad, sizeKolobok);
 
+         Snowdrift(200, 200, 1);
+         Snowdrift(1350, 200, 0.5);
+         Snowdrift(150, 900, 1.2);
+         Snowdrift(1400, 900, 1);
+
          xKolobok = xKolobok - 3*i;
 
          txSleep(100);
@@ -184,10 +198,17 @@ void Scene_2()
 
 //--------Action 2
 
+
     for (int countmove = 0; countmove <= 20; countmove++)
         {
          Snowman (xSnowman, ySnowman, nac, stick, sizeSnowman);
          Kolobok (xKolobok, yKolobok, rot, rad, sizeKolobok);
+
+         Snowdrift(200, 200, 1);
+         Snowdrift(1350, 200, 0.5);
+         Snowdrift(150, 900, 1.2);
+         Snowdrift(1400, 900, 1);
+
 
          if (countmove <= 10)
              {
@@ -219,13 +240,42 @@ void Scene_2()
 
 //--------Action 3
 
-    for (int z = 0; z <= 10; z++)
+    for (int z = 0; z <= 13; z++)
         {
          Snowman (xSnowman, ySnowman, nac, stick, sizeSnowman);
          Kolobok (xKolobok, yKolobok, rot, rad, sizeKolobok);
 
-         sizeKolobok = sizeKolobok - 0.25*z;
-         xKolobok = xKolobok - 5*z;
+         Snowdrift(200, 200, 1);
+         Snowdrift(1350, 200, 0.5);
+         Snowdrift(150, 900, 1.2);
+         Snowdrift(1400, 900, 1);
+
+         xKolobok = xKolobok - 10*z;
+
+         txSleep(100);
+
+         txSetFillColor(RGB(224, 255, 255));
+         txClear();
+        }
+
+    for (int zk = 0; zk <= 8; zk++)
+        {
+         Snowman (xSnowman, ySnowman, nac, stick, sizeSnowman);
+         Kolobok (xKolobok, yKolobok, rot, rad, sizeKolobok);
+
+         Snowdrift(200, 200, 1);
+         Snowdrift(1350, 200, 0.5);
+         Snowdrift(150, 900, 1.2);
+         Snowdrift(1400, 900, 1);
+
+
+         sizeKolobok = sizeKolobok - 0.05*zk;
+         xKolobok = xKolobok - 10*zk;
+
+         txSleep(100);
+
+         txSetFillColor(RGB(224, 255, 255));
+         txClear();
         }
 }
 
@@ -512,6 +562,19 @@ void Tree2 (long xTree2, long yTree2)
      txSetFillColor (RGB(173, 255, 47));
      txEllipse      (xTree2 - 100,  yTree2 +  20,
                      xTree2 +  40,  yTree2 - 200);
+    }
+
+void Snowdrift(long xSnowdrift, long ySnowdrift, double sizeSnowdrift)
+    {
+     txSetColor     (TX_BLACK);
+     txSetFillColor (TX_WHITE);
+     txEllipse      (ROUND(xSnowdrift),                     ROUND(ySnowdrift),
+                     ROUND(xSnowdrift + 400*sizeSnowdrift), ROUND(ySnowdrift - 150*sizeSnowdrift));
+
+     txSetColor     (RGB(224, 255, 255));
+     txSetFillColor (RGB(224, 255, 255));
+     txRectangle    (ROUND(xSnowdrift - 20*sizeSnowdrift),  ROUND(ySnowdrift + 20*sizeSnowdrift),
+                     ROUND(xSnowdrift + 420*sizeSnowdrift), ROUND(ySnowdrift - 75*sizeSnowdrift));
     }
 //#====================================================
 
