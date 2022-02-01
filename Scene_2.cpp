@@ -16,17 +16,20 @@ void Kolobok  (long xKolobok, long yKolobok, int rot, int rad, double sizeKolobo
 void KolobokS (long xKolobokStandart, long yKolobokStandart, int radStandart, double sizeKolobokStandart);
 void Zanoza   (long xZanoza,  long yZanoza, double sizeZanoza);
 
-void Tree1    (long xTree1, long yTree1);
-void Tree2    (long xTree2, long yTree2);
-void Snowdrift(long xSnowdrift, long ySnowdrift, double sizeSnowdrift);
+void Tree1     (long xTree1, long yTree1);
+void Tree2     (long xTree2, long yTree2);
+void Snowdrift (long xSnowdrift, long ySnowdrift, double sizeSnowdrift);
 
-void BoyMove ();
-void SnowmanMove();
-void BirdMove();
-void KolobokMove();
+void BoyMove     ();
+void SnowmanMove ();
+void BirdMove    ();
+void KolobokMove ();
 
 void Scene_1();
 void Scene_2();
+void Scene_3();
+
+void Phrase();
 
 int main ()
     {
@@ -35,7 +38,8 @@ int main ()
      txRectangle    (0, 0, 1600, 900);
 
      Scene_1();
-     Scene_2();
+     //Scene_2();
+     //Scene_3();
 
      return 0;
     }
@@ -92,36 +96,36 @@ void Scene_1()
 
     for(int zk = 0; zk<=17; zk++)
         {
-        Zanoza   (xZanoza, yZanoza, sizeZanoza);
-        KolobokS (xKolobokStandart, yKolobokStandart, radStandart, sizeKolobokStandart);
+         Zanoza   (xZanoza, yZanoza, sizeZanoza);
+         KolobokS (xKolobokStandart, yKolobokStandart, radStandart, sizeKolobokStandart);
 
-        Tree1 (xTree1, yTree1);
-        Tree2 (xTree2, yTree2);
-        Tree1 (162, 200);
-        Tree1 (1300, 250);
-        Tree2 (1500, 650);
-        Tree2 (750, 250);
+         Tree1 (xTree1, yTree1);
+         Tree2 (xTree2, yTree2);
+         Tree1 ( 162, 200);
+         Tree1 (1300, 250);
+         Tree2 (1500, 650);
+         Tree2 ( 750, 250);
 
-        xKolobokStandart = xKolobokStandart - 5*zk;
+         xKolobokStandart = xKolobokStandart - 5*zk;
 
-        txSleep(100);
+         txSleep (100);
 
-        txSetFillColor (RGB(119, 221, 119));
-        txClear ();
+         txSetFillColor (RGB(119, 221, 119));
+         txClear ();
         }
 
 //--------Phrase
 
     txSetFillColor (RGB(255, 255, 255));
 
-    txSetColor(RGB(0, 0, 0));
-    txSelectFont("Comic Sans MS", 50);
-    txTextOut(100, 300, "Oh, how can that be. I will not be able to remove the splinter, there are no pens!");
+    txSetColor   (RGB(0, 0, 0));
+    txSelectFont ("Comic Sans MS", 50);
+    txTextOut    (100, 300, "Oh, how can that be. I will not be able to remove the splinter, there are no pens!");
 
-    txSleep(2000);
+    txSleep (2000);
 
     txSetFillColor (RGB(255, 255, 255));
-    txClear();
+    txClear ();
 
 //--------Action 2
 
@@ -186,15 +190,15 @@ void Scene_2()
 
 //--------Phrase 1
 
-    txSetColor(RGB(0, 0, 0));
-    txSelectFont("Comic Sans MS", 50);
-    txTextOut(500, 300, "-Snowman, be a friend, help, eh!");
-    txTextOut(500, 400, "-Let's try");
+    txSetColor   (RGB(0, 0, 0));
+    txSelectFont ("Comic Sans MS", 50);
+    txTextOut    (500, 300, "-Snowman, be a friend, help, eh!");
+    txTextOut    (500, 400, "-Let's try");
 
-    txSleep(3000);
+    txSleep (3000);
 
     txSetFillColor (RGB(255, 255, 255));
-    txClear();
+    txClear ();
 
 //--------Action 2
 
@@ -204,10 +208,10 @@ void Scene_2()
          Snowman (xSnowman, ySnowman, nac, stick, sizeSnowman);
          Kolobok (xKolobok, yKolobok, rot, rad, sizeKolobok);
 
-         Snowdrift(200, 200, 1);
-         Snowdrift(1350, 200, 0.5);
-         Snowdrift(150, 900, 1.2);
-         Snowdrift(1400, 900, 1);
+         Snowdrift ( 200, 200, 1);
+         Snowdrift (1350, 200, 0.5);
+         Snowdrift ( 150, 900, 1.2);
+         Snowdrift (1400, 900, 1);
 
 
          if (countmove <= 10)
@@ -220,23 +224,23 @@ void Scene_2()
               nac = nac - countmove;
              }
 
-         txSleep(100);
+         txSleep (100);
 
-         txSetFillColor(RGB(224, 255, 255));
-         txClear();
+         txSetFillColor (RGB(224, 255, 255));
+         txClear ();
         }
 
 //--------Phrase 2
 
-    txSetColor(RGB(0, 0, 0));
-    txSelectFont("Comic Sans MS", 50);
-    txTextOut(300, 300, "-I can't get in. I can't move. I'm just a snowman!");
-    txTextOut(300, 400, "-Eh, okay. Thanks anyway for trying");
+    txSetColor   (RGB(0, 0, 0));
+    txSelectFont ("Comic Sans MS", 50);
+    txTextOut    (300, 300, "-I can't get in. I can't move. I'm just a snowman!");
+    txTextOut    (300, 400, "-Eh, okay. Thanks anyway for trying");
 
-    txSleep(3000);
+    txSleep (3000);
 
     txSetFillColor (RGB(255, 255, 255));
-    txClear();
+    txClear ();
 
 //--------Action 3
 
@@ -245,17 +249,17 @@ void Scene_2()
          Snowman (xSnowman, ySnowman, nac, stick, sizeSnowman);
          Kolobok (xKolobok, yKolobok, rot, rad, sizeKolobok);
 
-         Snowdrift(200, 200, 1);
-         Snowdrift(1350, 200, 0.5);
-         Snowdrift(150, 900, 1.2);
-         Snowdrift(1400, 900, 1);
+         Snowdrift ( 200, 200, 1);
+         Snowdrift (1350, 200, 0.5);
+         Snowdrift ( 150, 900, 1.2);
+         Snowdrift (1400, 900, 1);
 
          xKolobok = xKolobok - 10*z;
 
-         txSleep(100);
+         txSleep (100);
 
-         txSetFillColor(RGB(224, 255, 255));
-         txClear();
+         txSetFillColor (RGB(224, 255, 255));
+         txClear ();
         }
 
     for (int zk = 0; zk <= 8; zk++)
@@ -263,22 +267,44 @@ void Scene_2()
          Snowman (xSnowman, ySnowman, nac, stick, sizeSnowman);
          Kolobok (xKolobok, yKolobok, rot, rad, sizeKolobok);
 
-         Snowdrift(200, 200, 1);
-         Snowdrift(1350, 200, 0.5);
-         Snowdrift(150, 900, 1.2);
-         Snowdrift(1400, 900, 1);
+         Snowdrift ( 200, 200, 1);
+         Snowdrift (1350, 200, 0.5);
+         Snowdrift ( 150, 900, 1.2);
+         Snowdrift (1400, 900, 1);
 
 
          sizeKolobok = sizeKolobok - 0.05*zk;
          xKolobok = xKolobok - 10*zk;
 
-         txSleep(100);
+         txSleep (100);
 
-         txSetFillColor(RGB(224, 255, 255));
-         txClear();
+         txSetFillColor (RGB(224, 255, 255));
+         txClear ();
         }
 }
 
+void Scene_3()
+{
+    for(int i = 0; i <= 15; i++)
+        {
+         Tree1 ( 100, 100);
+         Tree2 (  50, 250);
+         Tree1 (  90, 300);
+         Tree1 ( 110, 390);
+         Tree2 (  60, 500);
+         Tree1 ( 120, 760);
+         Tree1 (1300, 220);
+         Tree2 (1500, 450);
+         Tree2 (1450, 650);
+
+         txSleep (100);
+
+         txSetFillColor (RGB(119, 221, 119));
+         txClear ();
+        }
+}
+
+//========================================================================================
 
 void Boy (long x, long y, double size, double tol, int mah, int go)
     {
@@ -502,12 +528,18 @@ void Zanoza (long xZanoza, long yZanoza, double sizeZanoza)
     txPolygon        (sanosa, 5);
     }
 
+//----------------------------------------------------
 void Tree1 (long xTree1, long yTree1)
     {
      txSetColor     (TX_BLACK);
      txSetFillColor (TX_BROWN);
      txRectangle    (xTree1 - 10, yTree1,
                      xTree1 - 50, yTree1 + 100);
+
+     txSetColor     (TX_BLACK);
+     txSetFillColor (TX_GREEN);
+     txEllipse      (xTree1 - 100,  yTree1 +  20,
+                     xTree1 +  40,  yTree1 - 200);
 
      txSetColor     (TX_BLACK);
      txSetFillColor (TX_GREEN);
@@ -520,11 +552,6 @@ void Tree1 (long xTree1, long yTree1)
      txSetColor     (TX_BLACK);
      txSetFillColor (TX_GREEN);
      txCircle       (xTree1 - 30, yTree1 - 200, 60);
-
-     txSetColor     (TX_GREEN);
-     txSetFillColor (TX_GREEN);
-     txEllipse      (xTree1 - 100,  yTree1 +  20,
-                     xTree1 +  40,  yTree1 - 200);
 
      txSetColor     (TX_BLACK);
      txSetFillColor (RGB(178, 34, 34));
@@ -539,12 +566,18 @@ void Tree1 (long xTree1, long yTree1)
      txCircle       (xTree1 - 80, yTree1 - 150, 22);
     }
 
+//-------------------------------------------------------
 void Tree2 (long xTree2, long yTree2)
     {
      txSetColor     (TX_BLACK);
      txSetFillColor (TX_BROWN);
      txRectangle    (xTree2 - 10, yTree2,
                      xTree2 - 50, yTree2 + 100);
+
+     txSetColor     (TX_BLACK);
+     txSetFillColor (RGB(173, 255, 47));
+     txEllipse      (xTree2 - 100,  yTree2 +  20,
+                     xTree2 +  40,  yTree2 - 200);
 
      txSetColor     (TX_BLACK);
      txSetFillColor (RGB(173, 255, 47));
@@ -558,12 +591,9 @@ void Tree2 (long xTree2, long yTree2)
      txSetFillColor (RGB(173, 255, 47));
      txCircle       (xTree2 - 30, yTree2 - 200, 60);
 
-     txSetColor     (RGB(173, 255, 47));
-     txSetFillColor (RGB(173, 255, 47));
-     txEllipse      (xTree2 - 100,  yTree2 +  20,
-                     xTree2 +  40,  yTree2 - 200);
     }
 
+//--------------------------------------------------------
 void Snowdrift(long xSnowdrift, long ySnowdrift, double sizeSnowdrift)
     {
      txSetColor     (TX_BLACK);
@@ -576,6 +606,9 @@ void Snowdrift(long xSnowdrift, long ySnowdrift, double sizeSnowdrift)
      txRectangle    (ROUND(xSnowdrift - 20*sizeSnowdrift),  ROUND(ySnowdrift + 20*sizeSnowdrift),
                      ROUND(xSnowdrift + 420*sizeSnowdrift), ROUND(ySnowdrift - 75*sizeSnowdrift));
     }
+
+void Prase
+
 //#====================================================
 
 //-------------------Actor Boy
