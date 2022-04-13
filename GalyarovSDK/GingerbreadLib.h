@@ -22,6 +22,10 @@ void Text (long x, long y, long x1, long y1, long x2, long y2, const char text[]
 
 //{--------------------------------------------
 //! рисует Птичку
+//! xBird - x coordinate calculation
+//! yBird - y coordinate calculation
+//! ras - changing the distance between the ends of the beak
+//! sizeBird - size of Bird
 //}--------------------------------------------
 
 void Bird (long xBird, long yBird, int ras, double sizeBird)
@@ -61,6 +65,9 @@ void Bird (long xBird, long yBird, int ras, double sizeBird)
     }
 //{--------------------------------------------
 //! рисуем Пенёк
+//! xPenek - x coordinate calculation
+//! yPenek - y coordinate calculation
+//! sizePenek - size of stump
 //}--------------------------------------------
 
 void Penek(long xPenek, long yPenek, double sizePenek)
@@ -74,6 +81,12 @@ void Penek(long xPenek, long yPenek, double sizePenek)
 
 //{--------------------------------------------
 //! рисуем Мальчика
+//! x - x coordinate calculation
+//! y - y coordinate calculation
+//! size - size of Boy
+//! tol - boy's line thickness
+//! mah - how far the hand moves
+//! go - distance between legs
 //}--------------------------------------------
 
 void Boy (long x, long y, double size, double tol, int mah, int go)
@@ -119,6 +132,11 @@ void Boy (long x, long y, double size, double tol, int mah, int go)
 
 //{--------------------------------------------
 //! рисуем Снеговика
+//! xSnowman - x coordinate calculation
+//! ySnowman - y coordinate calculation
+//! naclon - tilt stick
+//! stick - stick thickness
+//! sizeSnowman - size of snowman
 //}--------------------------------------------
 
 void Snowman (long xSnowman, long ySnowman, int naclon,  double stick, double sizeSnowman)
@@ -169,6 +187,10 @@ void Snowman (long xSnowman, long ySnowman, int naclon,  double stick, double si
 
 //{--------------------------------------------
 //! рисуем Колобка с улыбкой
+//! xKolobokStandart - x coordinate calculation of bun with smile
+//! yKolobokStandart - y coordinate calculation of bun with smile
+//! radStandart - eye radius of bun with smile
+//! sizeKolobokStandart - size of bun with smile
 //}--------------------------------------------
 
 void KolobokS (long xKolobokStandart, long yKolobokStandart, int radStandart, double sizeKolobokStandart)
@@ -179,8 +201,10 @@ void KolobokS (long xKolobokStandart, long yKolobokStandart, int radStandart, do
 
     txSetColor     (TX_BLACK);
     txSetFillColor (TX_BROWN);
-    POINT nos [4]  {{ROUND(xKolobokStandart)           ,  ROUND(yKolobokStandart)           },   {ROUND(xKolobokStandart - 20*sizeKolobokStandart), ROUND(yKolobokStandart + 20*sizeKolobokStandart)},
-                    {ROUND(xKolobokStandart + 20*sizeKolobokStandart), ROUND(yKolobokStandart + 20*sizeKolobokStandart)},  {ROUND(xKolobokStandart)           ,  ROUND(yKolobokStandart)           }};
+    POINT nos [4]  {{ROUND(xKolobokStandart), ROUND(yKolobokStandart)},   
+                    {ROUND(xKolobokStandart - 20*sizeKolobokStandart), ROUND(yKolobokStandart + 20*sizeKolobokStandart)},
+                    {ROUND(xKolobokStandart + 20*sizeKolobokStandart), ROUND(yKolobokStandart + 20*sizeKolobokStandart)},  
+                    {ROUND(xKolobokStandart),  ROUND(yKolobokStandart)}};
     txPolygon      (nos, 4);
 
 
@@ -205,6 +229,11 @@ void KolobokS (long xKolobokStandart, long yKolobokStandart, int radStandart, do
 
 //{--------------------------------------------
 //! рисуем Колобка с занозой
+//! xKolobok - x coordinate calculation of bun with a splinter
+//! yKolobok - y coordinate calculation of bun with a splinter
+//! rot - mouth line thickness of bun with a splinter
+//! rad - radius of bun with a splinter
+//! sizeKolobok -size of bun with a splinter
 //}--------------------------------------------
 
 void Kolobok (long xKolobok, long yKolobok, int rot, int rad, double sizeKolobok)
@@ -259,6 +288,9 @@ void Kolobok (long xKolobok, long yKolobok, int rot, int rad, double sizeKolobok
 
 //{--------------------------------------------
 //! рисуем Занозу
+//! xZanoza - x coordinate calculation
+//! yZanoza - y coordinate calculation 
+//! sizeZanoza - size of splinter
 //}--------------------------------------------
 
 void Zanoza (long xZanoza, long yZanoza, double sizeZanoza)
@@ -274,6 +306,8 @@ void Zanoza (long xZanoza, long yZanoza, double sizeZanoza)
 
 //{--------------------------------------------
 //! рисуем Дерево 1 вариант
+//! xTree1 - x coordinate calculation
+//! yTree1 - y coordinate calculation 
 //}--------------------------------------------
 
 void Tree1 (long xTree1, long yTree1)
@@ -315,6 +349,8 @@ void Tree1 (long xTree1, long yTree1)
 
 //{--------------------------------------------
 //! рисуем Дерево 2 вариант
+//! xTree2 - x coordinate calculation
+//! yTree2 - y coordinate calculation
 //}--------------------------------------------
 
 void Tree2 (long xTree2, long yTree2)
@@ -344,6 +380,9 @@ void Tree2 (long xTree2, long yTree2)
 
 //{--------------------------------------------
 //! рисуем Сугроб
+//! xSnowdrift - x coordinate calculation
+//! ySnowdrift - y coordinate calculation
+//! sizeSnowdrift - size of snowdrift
 //}--------------------------------------------
 
 void Snowdrift(long xSnowdrift, long ySnowdrift, double sizeSnowdrift)
@@ -361,6 +400,8 @@ void Snowdrift(long xSnowdrift, long ySnowdrift, double sizeSnowdrift)
 
 //{--------------------------------------------
 //! рисуем Дерево для птицы
+//! xTreeBird - x coordinate calculation
+//! yTreeBird - y coordinate calculation
 //}--------------------------------------------
 
 void TreeBird (long xTreeBird, long yTreeBird)
